@@ -1,0 +1,5 @@
+main.py is the API file 
+model.py is used to make recommendations.
+the dataframe (eng_songs_sample.pkl) used to make recommendations is in the data folder along with the original dataset (lyrics-data.csv).
+In model.py change the path to eng_songs_sample.pkl according to your own. 
+song_rec.ipynb is the original IPython Notebook that contains the code for preprocessing the lyrics-data.csv dataset.
