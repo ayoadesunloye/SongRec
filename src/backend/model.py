@@ -45,12 +45,12 @@ def recommend(item_id, num=10):
         no = []
         song_id = []
         for x in range(len(recs)):
-             no.append(x+1)
+            no.append(x+1)
         for rec in recs: 
                 
                 sname.append(item(rec[1])[0])
                 aname.append(item(rec[1])[1])
                 score.append(str(rec[0]))
                 song_id.append(str(rec[1]))
-        res = [{a: {'song':b,  'artist':c, 'score': d, 'id': e}} for (a, b, c, d, e) in zip(no, sname, aname, score, song_id)] 
+        res = [{'song':b,  'artist':c, 'score': d, 'id': e} for ( b, c, d, e) in zip( sname, aname, score, song_id)]  
         return (song_to_rec, res)
