@@ -1,5 +1,6 @@
 import React from "react";
-
+import styled from 'styled-components'
+import GlobalStyle from './globalStyle'
 import MusicForm from "./components/MusicForm"
 
 class SongRec extends React.Component {
@@ -62,19 +63,56 @@ class SongRec extends React.Component {
     const { value, recs } = this.state;
 
     return (
-      <div className="SongRec" style={{ marginLeft: "30px" }}>
-        <nav>
-          <p className="nav-header">SongRec</p>
-        </nav>
-        <h2 style={{ margin: "0px" }}>Find me songs similar to:</h2>
-        <MusicForm onSubmit={this.handleSubmit} onChange={this.handleChange} value={value} />
-        <ul style={{ listStyle: "none", padding: "0px" }}>
-          {recs.map(song => <li key={song.id}>{song.title + " by " + song.artist}</li>)}
-        </ul>
-      </div>
+    <React.Fragment>
+      <GlobalStyle />
+      <Container>
+        <nav><p className="nav-header">SongRec</p></nav>
+        <div className="SongRec">
+          <h2 style={{ margin: "0px" }}>Find me songs like:</h2>
+          <MusicForm onSubmit={this.handleSubmit} onChange={this.handleChange} value={value} />
+          <List>
+            {recs.map(song => {
+              let spanTitle = <span className="song-title">{song.title}</span>
+              return <li key={song.id}>{spanTitle}{" by " + song.artist}</li>
+            }
+              )}
+          </List>
+        </div>
+      </Container>
+
+    </React.Fragment>
     );
   }
 
 }
+
+const Container = styled.div`
+  nav {
+    margin-top: 2rem;
+    margin-left: 6rem;
+  }
+
+  .SongRec {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-top: 6rem;
+  }
+
+  h2 {
+    font: 600 32px "Open Sans", sans-serif;
+  }
+`
+
+const List = styled.ul`
+  list-style: none;
+  padding: 0;
+  font-size: 1.8rem;
+  width: 40rem;
+
+  .song-title {
+    text-decoration: underline;
+  }
+`
 
 export default SongRec;
